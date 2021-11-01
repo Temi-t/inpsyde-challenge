@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "guten-plugin/employee-overview",
+	"version": "0.1.0",
+	"title": "Employee Overview",
+	"category": "widgets",
+	"icon": "dashicons-id-alt",
+	"description": "Overview of all persons in the company... Example block written with ESNext standard and JSX support – build step required.",
+	"supports": {
+		"html": false
+	},
+    "keywords": ["workers"],
+    "edit": "Edit",
+	"save": "save",
+	"textdomain": "employee-overview",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}
