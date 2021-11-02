@@ -1,0 +1,1 @@
+{"version":3,"file":"index.css","mappings":";;;AAAA;IACI,YAAY;AAChB","sources":["webpack://employee-overview/./src/editor.css"],"sourcesContent":["h2{\n    color: green;\n}\n"],"names":[],"sourceRoot":""}
