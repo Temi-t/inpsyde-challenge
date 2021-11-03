@@ -4,8 +4,8 @@
 	"name": "guten-plugin/employee-overview",
 	"version": "0.1.0",
 	"title": "Employee Overview",
-	"category": "widgets",
-	"icon": "star",
+	"category": "common",
+	"icon": "smiley",
 	"description": "Overview of all persons in the company... Example block written with ESNext standard and JSX support – build step required.",
 	"supports": {
 		"html": false
@@ -13,7 +13,34 @@
     "keywords": ["workers", "worker", "staff", "employer"],
     "edit": "Edit",
 	"save": "save",
-	"textdomain": "employee-overview",
+	"textdomain": "gutenberg-overview",
+    "attributes": {
+        "firstName": {
+            "type": "string",
+            "source": "text",
+            "selector": ".firstName"
+        },
+        "lastName": {
+            "type": "string",
+            "source": "text",
+            "selector": ".lastName"
+        },
+        "position": {
+            "enum": ["CEO", "Developer", "Project Manager"],
+            "source": "text",
+            "selector": ".position"
+        },
+        "description": {
+            "type": "string",
+            "source": "text",
+            "selector": ".description"
+        },
+        "socialLinks": {
+            "enum": [ ],
+            "attribute": "src",
+            "selector": ".social-link"
+        }
+    },
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
 	"style": "file:./build/style-index.css"

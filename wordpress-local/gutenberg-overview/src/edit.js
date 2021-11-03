@@ -8,6 +8,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
+ *It also fixes a previous weird issue where the className property is only passed in the edit *function but not the save function in registerBlockType.
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
@@ -29,7 +30,33 @@ import './editor.css';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+import React, {useState} from 'react';
+
+export default function Edit( props ) {
+//{attributes, setAttributes}
+//    const [person, setPerson] = useState({});
+//simplified access to attributes
+console.log("Attributes: ", props.attributes)
+    const {firstName, lastName, position, description, socialLinks} = props.attributes;
+const attributes = props.attribue;
+const setAttributes = props.setAttributes;
+//    const useBLK = useBlockProps();
+//    console.log("UseBLockProps: ",useBLK)
+    const handleChange = (e) => {
+        setAttributes({ 
+            ...attributes,
+            [e.target.name]: e.target.value
+        })
+    }
+//    const handleFirstName = (e) => {
+//        props.setAttributes({ firstName: e.target.value})
+//    }
+
+    const handleSocialLink = (newLink) => 
+        setAttributes( {socialLinks: [
+            ...socialLinks,
+            newLink
+    ]} )
 	return (
 		        <div{...useBlockProps()}>
 			        {__(
@@ -41,19 +68,35 @@ export default function Edit() {
                     <img src={} alt="staff image"/>
 
                     */}
-                    <input type="text" name="firstName" placeholder="Firstname"/>
-                    <input type="text" name="LasttName" placeholder="LastName" />
-                    <label for="description">Staff description:</label>
-                    <textarea rows="5" cols="30" name="description"> </textarea>
+                    <input type="text" 
+                        name="firstName" 
+                        placeholder="Firstname######"
+                        value={firstName}
+                        onChange={handleChange}
+                    />
+                    <input type="html" 
+                        name="lastName" 
+                        placeholder="LastName"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="description">Staff description:</label>
+                    <textarea rows="5" cols="30"
+                        name="description" 
+                        value={ description }
+                        onChange={ handleChange }
+                    > </textarea>
+                    <input type="text" 
+                        name="xing" 
+                        placeholder="Xing" 
+                        onChange={()=>handleSocialLink(newLink)}
+                    />
 
-                    <label for="positions">Choose a Position:</label>
-                    <select name="positions" id="positions">
+                    <label htmlFor="position">Choose a Position:</label>
+                    <select name="position" value={position} onChange={handleChange}>
                         <option value="CEO">CEO</option>
                         <option value="Project Manager">Project Manager</option>
-                        <option value="Developer">Developer</option>
+                        <option defaultValue value="Developer">Developer</option>
                     </select>
-                   
-                    
 		        </div>
 	);
 }

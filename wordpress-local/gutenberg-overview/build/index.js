@@ -19,6 +19,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _editor_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.css */ "./src/editor.css");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
 
 
 /**
@@ -30,6 +32,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
+ *It also fixes a previous weird issue where the className property is only passed in the edit *function but not the save function in registerBlockType.
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
@@ -52,31 +55,72 @@ __webpack_require__.r(__webpack_exports__);
  * @return {WPElement} Element to render.
  */
 
-function Edit() {
+
+function Edit(props) {
+  //{attributes, setAttributes}
+  //    const [person, setPerson] = useState({});
+  //simplified access to attributes
+  console.log("Attributes: ", props.attributes);
+  const {
+    firstName,
+    lastName,
+    position,
+    description,
+    socialLinks
+  } = props.attributes;
+  const attributes = props.attribue;
+  const setAttributes = props.setAttributes; //    const useBLK = useBlockProps();
+  //    console.log("UseBLockProps: ",useBLK)
+
+  const handleChange = e => {
+    setAttributes({ ...attributes,
+      [e.target.name]: e.target.value
+    });
+  }; //    const handleFirstName = (e) => {
+  //        props.setAttributes({ firstName: e.target.value})
+  //    }
+
+
+  const handleSocialLink = newLink => setAttributes({
+    socialLinks: [...socialLinks, newLink]
+  });
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Gutenberg Overview – hello from the editor!', 'gutenberg-overview'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Employee Overview"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     name: "firstName",
-    placeholder: "Firstname"
+    placeholder: "Firstname######",
+    value: firstName,
+    onChange: handleChange
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "text",
-    name: "LasttName",
-    placeholder: "LastName"
+    type: "html",
+    name: "lastName",
+    placeholder: "LastName",
+    onChange: handleChange
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: "description"
+    htmlFor: "description"
   }, "Staff description:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     rows: "5",
     cols: "30",
-    name: "description"
-  }, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: "positions"
+    name: "description",
+    value: description,
+    onChange: handleChange
+  }, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "text",
+    name: "xing",
+    placeholder: "Xing",
+    onChange: () => handleSocialLink(newLink)
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    htmlFor: "position"
   }, "Choose a Position:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
-    name: "positions",
-    id: "positions"
+    name: "position",
+    value: position,
+    onChange: handleChange
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "CEO"
   }, "CEO"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "Project Manager"
   }, "Project Manager"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    defaultValue: true,
     value: "Developer"
   }, "Developer")));
 }
@@ -125,7 +169,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Retrieves the translation of text.
+ * Retrieves the translation of text. Internationalization utilities for client-side localization
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
@@ -148,8 +192,17 @@ __webpack_require__.r(__webpack_exports__);
  * @return {WPElement} Element to render.
  */
 
-function save() {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Gutenberg Overview – hello from the saved content!', 'gutenberg-overview'));
+function save(props) {
+  //{attributes, isSelected}
+  const {
+    firstName,
+    lastName,
+    position,
+    description,
+    socialLinks
+  } = props.attributes;
+  console.log("Frontend from save.js ===> ", socialLinks.lenght);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('***Gutenberg Overview – hello from the saved content!', 'gutenberg-overview'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, firstName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, lastName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, position), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, description), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "socialLinks"));
 }
 
 /***/ }),
@@ -175,6 +228,16 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ (function(module) {
+
+module.exports = window["React"];
 
 /***/ }),
 

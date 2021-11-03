@@ -1,3 +1,9 @@
-h2{
+.wp-block-guten-plugin-employee-overview{
     color: green;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
 }

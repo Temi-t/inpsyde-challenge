@@ -1,5 +1,5 @@
 /**
- * Retrieves the translation of text.
+ * Retrieves the translation of text. Internationalization utilities for client-side localization
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
@@ -22,22 +22,39 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save( props ) {
+//{attributes, isSelected}
+
+    const {firstName, lastName, position, description, socialLinks} = props.attributes;
+console.log("Frontend from save.js ===> ", socialLinks.lenght)
 	return (
-		<p {...useBlockProps.save()}>
+		<div {...useBlockProps.save()}>
 			{__(
-				'Gutenberg Overview – hello from the saved content!',
+				'***Gutenberg Overview – hello from the saved content!',
 				'gutenberg-overview'
 			)}
-            {/*Image*/}
-            {/*First/Lastname*/}
-            {/*Position*/}
 
-            {/*modal:
-                First/Lastname,
-                short description,
+                <p>{firstName}</p>
+                <p>{lastName}</p>
+                <p>{position}</p>
+                <p>{description}</p>
+                <p>socialLinks</p>
+{/*modal-popup:
+            { isSelected &&
+                ( <div onClick={}>{
+                First/Lastname
+                <p>{employee}</p>
+                short description
+                <p>{description}</p>
                  social links
-            */}
-		</p>
+                <ul>
+                    {
+                        socialLinks && social-links.map((link, i)=>())
+                    }
+                <ul>
+               }</div> )
+            }
+ */}
+		</div>
 	);
 }
