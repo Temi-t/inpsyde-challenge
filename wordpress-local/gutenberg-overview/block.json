@@ -35,10 +35,29 @@
             "source": "text",
             "selector": ".description"
         },
-        "socialLinks": {
-            "enum": [ ],
-            "attribute": "src",
-            "selector": ".social-link"
+        "gitHub": {
+            "type": "string",
+            "source": "attribute",
+            "selector": "img",
+            "attribute": "src"
+        },
+        "linkedIn": {
+            "type": "string",
+            "source": "attribute",
+            "selector": "img",
+            "attribute": "src"
+        },
+        "xing": {
+            "type": "string",
+            "source": "attribute",
+            "selector": "img",
+            "attribute": "src"
+        },
+        "facebook": {
+            "type": "string",
+            "source": "attribute",
+            "selector": "img",
+            "attribute": "src"
         }
     },
 	"editorScript": "file:./build/index.js",

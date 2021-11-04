@@ -18,7 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.css */ "./src/editor.css");
+/* harmony import */ var _styles_editor_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/editor.css */ "./src/styles/editor.css");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
 
@@ -57,8 +57,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Edit(props) {
-  //{attributes, setAttributes}
-  //    const [person, setPerson] = useState({});
   //simplified access to attributes
   console.log("Attributes: ", props.attributes);
   const {
@@ -66,9 +64,12 @@ function Edit(props) {
     lastName,
     position,
     description,
-    socialLinks
+    gitHub,
+    linkedIn,
+    xing,
+    facebook
   } = props.attributes;
-  const attributes = props.attribue;
+  const attributes = props.attributes;
   const setAttributes = props.setAttributes; //    const useBLK = useBlockProps();
   //    console.log("UseBLockProps: ",useBLK)
 
@@ -76,14 +77,13 @@ function Edit(props) {
     setAttributes({ ...attributes,
       [e.target.name]: e.target.value
     });
-  }; //    const handleFirstName = (e) => {
-  //        props.setAttributes({ firstName: e.target.value})
-  //    }
+  }; //setAttributes({}) to clear attributes
+  //    const handleSocialLink = (newLink) => 
+  //        setAttributes( {socialLinks: [
+  //            ...socialLinks,
+  //            newLink
+  //    ]} )
 
-
-  const handleSocialLink = newLink => setAttributes({
-    socialLinks: [...socialLinks, newLink]
-  });
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Gutenberg Overview – hello from the editor!', 'gutenberg-overview'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Employee Overview"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
@@ -102,14 +102,15 @@ function Edit(props) {
     rows: "5",
     cols: "30",
     name: "description",
-    value: description,
     onChange: handleChange
-  }, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  }, description), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    htmlFor: "xing"
+  }, "Xing:", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     name: "xing",
     placeholder: "Xing",
-    onChange: () => handleSocialLink(newLink)
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    onChange: handleChange
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     htmlFor: "position"
   }, "Choose a Position:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
     name: "position",
@@ -136,7 +137,7 @@ function Edit(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/save.js");
 
@@ -166,6 +167,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
 
 
 /**
@@ -192,6 +194,7 @@ __webpack_require__.r(__webpack_exports__);
  * @return {WPElement} Element to render.
  */
 
+
 function save(props) {
   //{attributes, isSelected}
   const {
@@ -199,18 +202,21 @@ function save(props) {
     lastName,
     position,
     description,
-    socialLinks
-  } = props.attributes;
-  console.log("Frontend from save.js ===> ", socialLinks.lenght);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('***Gutenberg Overview – hello from the saved content!', 'gutenberg-overview'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, firstName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, lastName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, position), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, description), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "socialLinks"));
+    gitHub,
+    linkedIn,
+    xing,
+    facebook
+  } = props.attributes; //console.log("Frontend from save.js ===> ", socialLinks.lenght)
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('***Gutenberg Overview – hello from the saved content!', 'gutenberg-overview'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, firstName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, position), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, xing));
 }
 
 /***/ }),
 
-/***/ "./src/editor.css":
-/*!************************!*\
-  !*** ./src/editor.css ***!
-  \************************/
+/***/ "./src/styles/editor.css":
+/*!*******************************!*\
+  !*** ./src/styles/editor.css ***!
+  \*******************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -219,10 +225,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/style.scss":
-/*!************************!*\
-  !*** ./src/style.scss ***!
-  \************************/
+/***/ "./src/styles/style.css":
+/*!******************************!*\
+  !*** ./src/styles/style.css ***!
+  \******************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);

@@ -5,6 +5,11 @@
  */
 
 .wp-block-create-block-gutenberg-overview {
-	border: 1px dotted pink;
+	color: green;
+	background: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	border-radius: 8px;
+    align-items: center;
 }
-

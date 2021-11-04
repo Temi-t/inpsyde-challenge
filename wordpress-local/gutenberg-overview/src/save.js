@@ -22,36 +22,37 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
+import './styles/style.css';
 export default function save( props ) {
 //{attributes, isSelected}
-
-    const {firstName, lastName, position, description, socialLinks} = props.attributes;
-console.log("Frontend from save.js ===> ", socialLinks.lenght)
+    const {
+        firstName,
+         lastName,
+         position,
+         description,
+         gitHub,
+         linkedIn,
+         xing,
+        facebook
+    } = props.attributes;
+//console.log("Frontend from save.js ===> ", socialLinks.lenght)
 	return (
 		<div {...useBlockProps.save()}>
 			{__(
 				'***Gutenberg Overview – hello from the saved content!',
 				'gutenberg-overview'
 			)}
-
+                {/*image*/}
                 <p>{firstName}</p>
-                <p>{lastName}</p>
                 <p>{position}</p>
-                <p>{description}</p>
-                <p>socialLinks</p>
+                <p>{xing}</p>
+
 {/*modal-popup:
             { isSelected &&
                 ( <div onClick={}>{
-                First/Lastname
-                <p>{employee}</p>
-                short description
+                <p>{firstName}</p>
                 <p>{description}</p>
-                 social links
-                <ul>
-                    {
-                        socialLinks && social-links.map((link, i)=>())
-                    }
-                <ul>
+                socilalinks ....         
                }</div> )
             }
  */}

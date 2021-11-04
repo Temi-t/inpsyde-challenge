@@ -20,7 +20,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.css';
+import './styles/editor.css';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -33,13 +33,20 @@ import './editor.css';
 import React, {useState} from 'react';
 
 export default function Edit( props ) {
-//{attributes, setAttributes}
-//    const [person, setPerson] = useState({});
 //simplified access to attributes
-console.log("Attributes: ", props.attributes)
-    const {firstName, lastName, position, description, socialLinks} = props.attributes;
-const attributes = props.attribue;
-const setAttributes = props.setAttributes;
+    console.log("Attributes: ", props.attributes)
+    const {
+        firstName,
+         lastName,
+         position,
+         description,
+         gitHub,
+         linkedIn,
+         xing,
+        facebook
+    } = props.attributes;
+    const attributes = props.attributes;
+    const setAttributes = props.setAttributes;
 //    const useBLK = useBlockProps();
 //    console.log("UseBLockProps: ",useBLK)
     const handleChange = (e) => {
@@ -48,15 +55,12 @@ const setAttributes = props.setAttributes;
             [e.target.name]: e.target.value
         })
     }
-//    const handleFirstName = (e) => {
-//        props.setAttributes({ firstName: e.target.value})
-//    }
-
-    const handleSocialLink = (newLink) => 
-        setAttributes( {socialLinks: [
-            ...socialLinks,
-            newLink
-    ]} )
+//setAttributes({}) to clear attributes
+//    const handleSocialLink = (newLink) => 
+//        setAttributes( {socialLinks: [
+//            ...socialLinks,
+//            newLink
+//    ]} )
 	return (
 		        <div{...useBlockProps()}>
 			        {__(
@@ -82,14 +86,15 @@ const setAttributes = props.setAttributes;
                     <label htmlFor="description">Staff description:</label>
                     <textarea rows="5" cols="30"
                         name="description" 
-                        value={ description }
                         onChange={ handleChange }
-                    > </textarea>
-                    <input type="text" 
-                        name="xing" 
-                        placeholder="Xing" 
-                        onChange={()=>handleSocialLink(newLink)}
-                    />
+                    >{ description }</textarea>
+                    <label htmlFor="xing">Xing:
+                        <input type="text" 
+                            name="xing" 
+                            placeholder="Xing" 
+                            onChange={handleChange}
+                        />
+                    </label>
 
                     <label htmlFor="position">Choose a Position:</label>
                     <select name="position" value={position} onChange={handleChange}>
