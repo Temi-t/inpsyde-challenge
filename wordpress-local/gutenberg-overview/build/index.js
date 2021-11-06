@@ -59,7 +59,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Edit(props) {
   //simplified access to attributes
-  console.log("Attributes: ", props.attributes);
+  //    console.log("Attributes: ", props.attributes)
   const {
     firstName,
     lastName,
@@ -68,12 +68,14 @@ function Edit(props) {
     gitHub,
     linkedIn,
     xing,
-    facebook
+    facebook,
+    staffImage
   } = props.attributes;
   const attributes = props.attributes;
   const setAttributes = props.setAttributes;
 
   const handleChange = e => {
+    //        if(e.target.name === "")return;
     setAttributes({ ...attributes,
       [e.target.name]: e.target.value
     });
@@ -81,7 +83,7 @@ function Edit(props) {
 
   const clearFields = () => {
     //        e.target.value="";
-    const attributeCopy = { ...attribute
+    const attributeCopy = { ...attributes
     };
     let items;
 
@@ -89,9 +91,10 @@ function Edit(props) {
       attributeCopy[items] = "";
     }
 
-    setAttributes(attributeCopy);
+    setAttributes(attributeCopy); //        setAttributes(attributeCopy)
   };
 
+  console.log("New attributes: ", attributes);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Gutenberg Overview – hello from the editor!', 'gutenberg-overview'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "block__container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
@@ -104,36 +107,30 @@ function Edit(props) {
     type: "text",
     name: "firstName",
     placeholder: "Firstname",
-    value: firstName,
+    value: firstName || "",
     onChange: handleChange
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     name: "lastName",
+    value: lastName || "",
     placeholder: "LastName",
     onChange: handleChange
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "img-position"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "staff-image"
-  }, "select image: "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "file",
-    id: "img",
-    name: "staff-image",
-    placeholder: "Image",
-    accept: "image/*"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    htmlFor: "staffImage"
+  }, "select image: "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     htmlFor: "position"
   }, "Position: "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
     name: "position",
     className: "position",
-    value: position,
+    value: position || "",
     onChange: handleChange
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "CEO"
   }, "CEO"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "Project Manager"
   }, "Project Manager"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    defaultValue: true,
     value: "Developer"
   }, "Developer")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     htmlFor: "description"
@@ -141,22 +138,25 @@ function Edit(props) {
     rows: "5",
     cols: "30",
     name: "description",
+    value: description || "",
     placeholder: "Empolyee description:",
     onChange: handleChange
   }, description), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "socials"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "github"
+    htmlFor: "gitHub"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
-    name: "github",
+    name: "gitHub",
+    value: gitHub || "",
     placeholder: "GitHub",
     onChange: handleChange
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "linkedin"
+    htmlFor: "linkedIn"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
-    name: "linkedin",
+    name: "linkedIn",
+    value: linkedIn || "",
     placeholder: "LinkedIn",
     onChange: handleChange
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
@@ -164,6 +164,7 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     name: "xing",
+    value: xing || "",
     placeholder: "Xing",
     onChange: handleChange
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
@@ -171,6 +172,7 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     name: "facebook",
+    value: facebook || "",
     placeholder: "Facebook",
     onChange: handleChange
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {

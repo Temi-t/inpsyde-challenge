@@ -58,7 +58,13 @@
             "source": "attribute",
             "selector": "img",
             "attribute": "src"
+        },
+        "staffImage": {
+            "type": "string",
+            "source": "text",
+            "selector": ".staffImage"
         }
+
     },
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",

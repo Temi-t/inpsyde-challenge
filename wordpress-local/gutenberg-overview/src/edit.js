@@ -35,7 +35,7 @@ import React, {useState} from 'react';
 
 export default function Edit( props ) {
 //simplified access to attributes
-    console.log("Attributes: ", props.attributes)
+//    console.log("Attributes: ", props.attributes)
     const {
         firstName,
          lastName,
@@ -44,27 +44,31 @@ export default function Edit( props ) {
          gitHub,
          linkedIn,
          xing,
-        facebook
+        facebook,
+        staffImage
     } = props.attributes;
 
     const attributes = props.attributes;
     const setAttributes = props.setAttributes;
 
     const handleChange = (e) => {
-        setAttributes({ 
-            ...attributes,
+//        if(e.target.name === "")return;
+        setAttributes(prevAttributes => ({ 
+            ...prevAttributes,
             [e.target.name]: e.target.value
-        })
+        }));
     }
     const clearFields = () => {
 //        e.target.value="";
-        const attributeCopy = {...attribute}
+        const attributeCopy = {...attributes}
         let items;
         for(items in attributeCopy){
-            attributeCopy[items] = "";
+            attributeCopy[items]=""
         }
         setAttributes(attributeCopy)
+//        setAttributes(attributeCopy)
     }
+            console.log("New attributes: ", attributes)
 
 	return (
 		        <div{...useBlockProps()}>
@@ -83,35 +87,40 @@ export default function Edit( props ) {
                                 <input type="text" 
                                     name="firstName" 
                                     placeholder="Firstname"
-                                    value={firstName}
+                                    value={firstName || ""}
                                     onChange={handleChange}
+                                    required
                                 />
                                 <input type="text" 
                                     name="lastName" 
+                                    value={lastName || ""}
                                     placeholder="LastName"
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
                             <div className="img-position">
-                                <label htmlFor="staff-image">select image: </label>
-                                <input type="file" 
+                                <label htmlFor="staffImage">select image: </label>
+                                {/*<input type="file" 
                                     id="img"
-                                    name="staff-image" 
-                                    placeholder="Image"
+                                    name="staffImage" 
+                                    value={staffImage || ""}
                                     accept="image/*"
-                                />
+                                    onChange={}
+                                />*/}
                                 <label htmlFor="position">Position: </label>
-                                <select name="position" className="position" value={position}onChange={handleChange}>
+                                <select name="position" className="position" value={position || ""} onChange={handleChange}>
                                     <option value="CEO">CEO</option>
                                     <option value="Project Manager">Project Manager</option>
-                                    <option defaultValue value="Developer">Developer</option>
+                                    <option value="Developer">Developer</option>
                                 </select>
                             </div>
                         </div>
 
                             <label htmlFor="description"></label>
                             <textarea rows="5" cols="30"
-                                name="description" 
+                                name="description"
+                                value={description || ""} 
                                 placeholder="Empolyee description:"
                                 onChange={ handleChange }
                             >
@@ -119,23 +128,26 @@ export default function Edit( props ) {
                             </textarea>
 
                             <div className="socials">
-                                <label htmlFor="github">
+                                <label htmlFor="gitHub">
                                     <input type="text" 
-                                        name="github" 
+                                        name="gitHub"
+                                        value={gitHub || ""} 
                                         placeholder="GitHub" 
                                         onChange={handleChange}
                                     />
                                 </label>
-                                <label htmlFor="linkedin">
+                                <label htmlFor="linkedIn">
                                     <input type="text" 
-                                        name="linkedin" 
+                                        name="linkedIn" 
+                                        value={linkedIn || ""} 
                                         placeholder="LinkedIn" 
                                         onChange={handleChange}
                                     />
                                 </label>
                                 <label htmlFor="xing">
                                     <input type="text" 
-                                        name="xing" 
+                                        name="xing"
+                                        value={xing || ""}  
                                         placeholder="Xing" 
                                         onChange={handleChange}
                                     />
@@ -143,6 +155,7 @@ export default function Edit( props ) {
                                 <label htmlFor="facebook">
                                     <input type="text" 
                                         name="facebook" 
+                                        value={facebook || ""} 
                                         placeholder="Facebook" 
                                         onChange={handleChange}
                                     />
