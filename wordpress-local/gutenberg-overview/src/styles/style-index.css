@@ -4,9 +4,9 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-create-block-gutenberg-overview {
-  background-color: #21759b;
-  color: #fff;
-  padding: 2px;
+.frontend__container {
+  background: pink;
+  height: 100px;
+  width: 200px;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style-index.css.map */

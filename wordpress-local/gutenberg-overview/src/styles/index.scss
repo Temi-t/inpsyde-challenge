@@ -1,0 +1,107 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+:root {
+	--primary-color: purple;
+}
+
+.wp-block-create-block-gutenberg-overview {
+	// color: green;
+	// background: white;
+}
+.block__container {
+	// background: rgba(146, 146, 236, 0.2);
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border-radius: 8px;
+	align-items: left;
+	border: 6px solid rgba(128, 128, 128, 0.5);
+	padding: 20px;
+}
+.firstClass {
+    text-align: center;
+	background: #eff4f7;
+    width: 100%;
+    color: grey;
+    font-weight: bold;
+}
+.employee-name > input[type=text], label > input[type=text]{
+    margin-bottom: 20px;
+    padding: 0 10px;
+    width: 200px;
+    height: 34px;
+    color: #404040;
+    border: 1px solid;
+    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+    border-radius: 2px;
+    outline: 5px solid #eff4f7;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+
+    &:focus{
+        border-color: #7dc9e2;
+        outline-color: #dceefc;
+        outline-offset: 0;
+    }
+}
+.img-position{
+    display: flex;
+    flex-direction: column;
+}
+label{
+    font-size: 14px;
+}
+input[type=file]{
+    margin-bottom: 10px;
+}
+
+.about{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+textarea{
+    margin-bottom: 20px;
+    padding: 0 10px;
+    /*width: 300px;
+    height: 34px;*/
+    color: #404040;
+    border: 1px solid;
+    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+    border-radius: 2px;
+    outline: 5px solid #eff4f7;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+
+    &:focus{
+        border-color: #7dc9e2;
+        outline-color: #dceefc;
+        outline-offset: 0;
+    }
+}
+.socials{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.btn {
+	padding: 8px 10px;
+    border: none;
+	border-radius: 3px;
+	background: #dceefc;
+    color: grey;
+	width: 50%;
+    margin: auto;
+	&:hover {
+		background: transparent;
+		box-shadow: 0 0 20px 10px hsla(204, 70%, 53%, 0.2);
+	}
+}
+
+

@@ -1,3 +1,4 @@
+//editor
 /**
  * Retrieves the translation of text.
  *
@@ -20,7 +21,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './styles/editor.css';
+import './styles/index.css';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -45,63 +46,110 @@ export default function Edit( props ) {
          xing,
         facebook
     } = props.attributes;
+
     const attributes = props.attributes;
     const setAttributes = props.setAttributes;
-//    const useBLK = useBlockProps();
-//    console.log("UseBLockProps: ",useBLK)
+
     const handleChange = (e) => {
         setAttributes({ 
             ...attributes,
             [e.target.name]: e.target.value
         })
     }
-//setAttributes({}) to clear attributes
-//    const handleSocialLink = (newLink) => 
-//        setAttributes( {socialLinks: [
-//            ...socialLinks,
-//            newLink
-//    ]} )
+    const clearFields = () => {
+//        e.target.value="";
+        const attributeCopy = {...attribute}
+        let items;
+        for(items in attributeCopy){
+            attributeCopy[items] = "";
+        }
+        setAttributes(attributeCopy)
+    }
+
 	return (
 		        <div{...useBlockProps()}>
 			        {__(
 				        'Gutenberg Overview – hello from the editor!',
 				        'gutenberg-overview'
 			        )}
-                    <h2>Employee Overview</h2>
-                    {/*name
-                    <img src={} alt="staff image"/>
+                    <div className="block__container">
+                        <h2 className="firstClass">Employee Details</h2>
+                        {/*name
+                        <img src={} alt="staff image"/>
 
-                    */}
-                    <input type="text" 
-                        name="firstName" 
-                        placeholder="Firstname######"
-                        value={firstName}
-                        onChange={handleChange}
-                    />
-                    <input type="html" 
-                        name="lastName" 
-                        placeholder="LastName"
-                        onChange={handleChange}
-                    />
-                    <label htmlFor="description">Staff description:</label>
-                    <textarea rows="5" cols="30"
-                        name="description" 
-                        onChange={ handleChange }
-                    >{ description }</textarea>
-                    <label htmlFor="xing">Xing:
-                        <input type="text" 
-                            name="xing" 
-                            placeholder="Xing" 
-                            onChange={handleChange}
-                        />
-                    </label>
+                        */}
+                        <div className="about">
+                            <div className="employee-name">
+                                <input type="text" 
+                                    name="firstName" 
+                                    placeholder="Firstname"
+                                    value={firstName}
+                                    onChange={handleChange}
+                                />
+                                <input type="text" 
+                                    name="lastName" 
+                                    placeholder="LastName"
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="img-position">
+                                <label htmlFor="staff-image">select image: </label>
+                                <input type="file" 
+                                    id="img"
+                                    name="staff-image" 
+                                    placeholder="Image"
+                                    accept="image/*"
+                                />
+                                <label htmlFor="position">Position: </label>
+                                <select name="position" className="position" value={position}onChange={handleChange}>
+                                    <option value="CEO">CEO</option>
+                                    <option value="Project Manager">Project Manager</option>
+                                    <option defaultValue value="Developer">Developer</option>
+                                </select>
+                            </div>
+                        </div>
 
-                    <label htmlFor="position">Choose a Position:</label>
-                    <select name="position" value={position} onChange={handleChange}>
-                        <option value="CEO">CEO</option>
-                        <option value="Project Manager">Project Manager</option>
-                        <option defaultValue value="Developer">Developer</option>
-                    </select>
+                            <label htmlFor="description"></label>
+                            <textarea rows="5" cols="30"
+                                name="description" 
+                                placeholder="Empolyee description:"
+                                onChange={ handleChange }
+                            >
+                                { description }
+                            </textarea>
+
+                            <div className="socials">
+                                <label htmlFor="github">
+                                    <input type="text" 
+                                        name="github" 
+                                        placeholder="GitHub" 
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                                <label htmlFor="linkedin">
+                                    <input type="text" 
+                                        name="linkedin" 
+                                        placeholder="LinkedIn" 
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                                <label htmlFor="xing">
+                                    <input type="text" 
+                                        name="xing" 
+                                        placeholder="Xing" 
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                                <label htmlFor="facebook">
+                                    <input type="text" 
+                                        name="facebook" 
+                                        placeholder="Facebook" 
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            </div>
+                            <button type="button" onClick={clearFields} className="btn">Clear fields</button>
+                    </div>
 		        </div>
 	);
 }
