@@ -6,7 +6,10 @@
  */
 .frontend__container {
   background: pink;
-  height: 100px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
+}
+.firstName{
+    color: blue;
 }
 /*# sourceMappingURL=style-index.css.map */

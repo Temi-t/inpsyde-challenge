@@ -5,8 +5,8 @@
 	"version": "0.1.0",
 	"title": "Employee Overview",
 	"category": "common",
-	"icon": "smiley",
-	"description": "Overview of all persons in the company... Example block written with ESNext standard and JSX support – build step required.",
+	"icon": "id-alt",
+	"description": "Creates an overview of employees within a  company",
 	"supports": {
 		"html": false
 	},

@@ -53,10 +53,10 @@ export default function Edit( props ) {
 
     const handleChange = (e) => {
 //        if(e.target.name === "")return;
-        setAttributes(prevAttributes => ({ 
-            ...prevAttributes,
+        setAttributes({ 
+            ...attributes,
             [e.target.name]: e.target.value
-        }));
+        });
     }
     const clearFields = () => {
 //        e.target.value="";
@@ -108,8 +108,9 @@ export default function Edit( props ) {
                                     accept="image/*"
                                     onChange={}
                                 />*/}
-                                <label htmlFor="position">Position: </label>
+                                <label htmlFor="position"> </label>
                                 <select name="position" className="position" value={position || ""} onChange={handleChange}>
+                                    <option value="" selected disabled hidden>Position</option>
                                     <option value="CEO">CEO</option>
                                     <option value="Project Manager">Project Manager</option>
                                     <option value="Developer">Developer</option>
@@ -123,8 +124,9 @@ export default function Edit( props ) {
                                 value={description || ""} 
                                 placeholder="Empolyee description:"
                                 onChange={ handleChange }
+                                required
                             >
-                                { description }
+                                { description || "" }
                             </textarea>
 
                             <div className="socials">

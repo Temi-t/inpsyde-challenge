@@ -9,10 +9,14 @@
  */
 .frontend__container {
   background: pink;
-  height: 100px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
+}
+.firstName{
+    color: blue;
 }
 /*# sourceMappingURL=style-index.css.map */
+
 /*!**************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/styles/index.css ***!
   \**************************************************************************************************************************************************************************/
